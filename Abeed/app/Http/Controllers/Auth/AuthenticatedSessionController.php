@@ -30,16 +30,14 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        // توجيه المستخدم بناءً على دوره
-        if ($user->role == 'admin') {
-            return redirect()->route('admin.dashboard');
+        if ($user->role == 'Admin') {
+            return redirect()->route('admin.show');
         } elseif ($user->role == 'employer') {
-            return redirect()->route('employer.dashboard');
+            return redirect()->route('employer.show');
         } elseif ($user->role == 'candidate') {
-            return redirect()->route('candidate.dashboard');
+            return redirect()->route('candidate.show');
         }
 
-        // في حال عدم وجود دور مناسب (يمكنك إضافة مسار افتراضي هنا)
         return redirect()->route('dashboard');
         }
 

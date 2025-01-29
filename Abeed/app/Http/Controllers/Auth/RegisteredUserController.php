@@ -36,14 +36,14 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
-           'name' => $validated['name'],
-        'email' => $validated['email'],
-        'password' => Hash::make($validated['password']),
-        'phone' => $validated['phone'] ?? null,
-        'address' => $validated['address'] ?? null,
-        'company_name' => $validated['company_name'] ?? null,
-        'company_logo' => $validated['company_logo'] ?? null,
-        'role' => $validated['role'], // افتراضًا أن المستخدم يحدد الدور
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'phone' => $validated['phone'] ?? null,
+            'address' => $validated['address'] ?? null,
+            'company_name' => $validated['company_name'] ?? null,
+            'company_logo' => $validated['company_logo'] ?? null,
+            'role' => $validated['role'] ?? 'Candidate', 
         ]);
 
         event(new Registered($user));

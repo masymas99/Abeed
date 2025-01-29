@@ -21,6 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'company_name',
+        'company_logo',
+        'phone',
+        'address',
+
     ];
 
     /**
@@ -33,6 +39,14 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function jobListings()
+    {
+        return $this->hasMany(JobListing::class);
+    }
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
     /**
      * Get the attributes that should be cast.
      *

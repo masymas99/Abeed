@@ -39,6 +39,33 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+
+        <div>
+            <label for="role" class="text-gray-400">Role</label>
+            <select class="form-select bg-gray-900 text-gray-400 w-full rounded" name="role" id="role" required>
+                <option value="candidate" selected>Candidate</option>
+                <option value="employer">Employer</option>
+            </select>
+        </div>
+
+        <div id="employer-fields" style="display: none;">
+            <label class="text-gray-400 mt-4" for="company_name">Company Name</label>
+            <input type="text" id="company_name"class="block mt-1 w-full  bg-gray-900 text-gray-400 w-full rounded" name="company_name">
+
+            <label class="form-label text-gray-400 mt-4" for="company_logo">Company Logo</label>
+            <input class="form-control text-gray-400 mt-4" type="file" id="company_logo" name="company_logo">
+        </div>
+
+        <div>
+            <label class="text-gray-400 mt-4 rounded" for="phone">Phone</label>
+
+            <x-text-input class="block mt-1 w-full" type="text" id="phone" name="phone"/>
+        </div>
+
+        <div>
+            <label class="text-gray-400 mt-4 rounded" for="address">Address</label>
+            <textarea class="bg-gray-900 text-white w-full" id="address" name="address"></textarea>
+        </div>
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
@@ -48,32 +75,6 @@
                 {{ __('Register') }}
             </x-primary-button>
         </div>
-        <div>
-            <label for="role">Role</label>
-            <select name="role" id="role" required>
-                <option value="candidate">Candidate</option>
-                <option value="employer">Employer</option>
-            </select>
-        </div>
-
-        <div id="employer-fields" style="display: none;">
-            <label for="company_name">Company Name</label>
-            <input type="text" id="company_name" name="company_name">
-
-            <label for="company_logo">Company Logo</label>
-            <input type="file" id="company_logo" name="company_logo">
-        </div>
-
-        <div>
-            <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone">
-        </div>
-
-        <div>
-            <label for="address">Address</label>
-            <textarea id="address" name="address"></textarea>
-        </div>
-
         <script>
             document.getElementById('role').addEventListener('change', function () {
                 const employerFields = document.getElementById('employer-fields');

@@ -18,7 +18,7 @@
  
  // رفض الوظيفة (POST)
  Route::post('/admin/job/reject/{id}', [AdminController::class, 'rejectJob'])->name('admin.rejectJob');
- 
+
  // عرض تفاصيل الوظيفة
  Route::get('/admin/job/view/{id}', [AdminController::class, 'viewJob'])->name('admin.viewJob');
  

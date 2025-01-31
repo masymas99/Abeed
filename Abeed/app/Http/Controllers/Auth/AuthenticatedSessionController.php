@@ -14,10 +14,25 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+
+     public function create()
+     {
+         return view('auth.login');
+     }
+    public function index(): View
     {
-        return view('auth.login');
+        $useruser = Auth::user();
+        if ($useruser->role == 'Admin') {
+            return view('admin.index');
+        } elseif ($useruser->role == 'Employer') {
+            return view('employer.index');
+        } elseif ($useruser->role == 'Candidate') {
+            return view('candidate.index');
+        }
+
+        return view('profile.edit');
     }
+
 
     /**
      * Handle an incoming authentication request.
@@ -30,16 +45,14 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        // توجيه المستخدم بناءً على دوره
-        if ($user->role == 'admin') {
-            return redirect()->route('admin.dashboard');
-        } elseif ($user->role == 'employer') {
-            return redirect()->route('employer.dashboard');
-        } elseif ($user->role == 'candidate') {
-            return redirect()->route('candidate.dashboard');
+        if ($user->role == 'Admin') {
+            return redirect()->route('admin.home');
+        } elseif ($user->role == 'Employer') {
+            return redirect()->route('employer.index');
+        } elseif ($user->role == 'Candidate') {
+            return redirect()->route('candidate.index');
         }
 
-        // في حال عدم وجود دور مناسب (يمكنك إضافة مسار افتراضي هنا)
         return redirect()->route('dashboard');
         }
 

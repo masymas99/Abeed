@@ -22,32 +22,36 @@ class JobListing extends Model
         'salary_min',
         'salary_max',
         'user_id',
+        'application_deadline',
+        'skills_required',
+        'benefits',
+
     ];
 
     /**
      * Relationship with User.
      * A job listing belongs to an employer.
      */
-     public function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
-     }
+    }
 
     /**
      * Relationship with Application.
      * A job listing can have many applications.
      */
-     public function applications()
+    public function applications()
     {
-         return $this->hasMany(Application::class);
-     }
+        return $this->hasMany(Application::class);
+    }
 
     /**
      * Relationship with JobCategory.
      * A job listing can belong to many categories.
      */
     public function categories()
-     {
-         return $this->belongsToMany(JobCategory::class, 'job_category_listing');
-     }
- }
+    {
+        return $this->belongsToMany(JobCategory::class, 'job_category_listing');
+    }
+}

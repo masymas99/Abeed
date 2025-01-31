@@ -5,25 +5,35 @@
     <div class="jobs-container">
         @foreach ($jobs as $job)
             <div class="job-card">
-                <h3>{{ $job->title }}</h3>  
-                <p><strong>Company Name:</strong> {{ $job->user->company_name ?? 'N/A' }}</p>
-                <p><strong>Salary Min:</strong> {{ $job->salary_min }}</p>
-                <p><strong>Salary Max:</strong> {{ $job->salary_max }}</p>
-                <p><strong>Location:</strong> {{ $job->location }}</p>
-                <p><strong>Application Deadline:</strong> {{ \Carbon\Carbon::parse($job->application_deadline)->format('d M Y') }}</p>
+                <div class="maincont">
+                    <div class="jopdetals">
+                        <h3>{{ $job->title }}</h3>
+                        <p><strong>Company Name:</strong> {{ $job->user->company_name ?? 'N/A' }}</p>
+                        <p><strong>Salary Min:</strong> {{ $job->salary_min }}</p>
+                        <p><strong>Salary Max:</strong> {{ $job->salary_max }}</p>
+                        <p><strong>Location:</strong> {{ $job->location }}</p>
+                        <p><strong>Deadline:</strong> {{ \Carbon\Carbon::parse($job->application_deadline)->format('d M Y') }}</p>
+                    </div>
+                    <div class="compimg">
+                        <img src="{{ asset( $job->user->company_logo) }}" class="img-fluid rounded-start" alt="{{ $job->user->company_logo }}">
+                    </div>
 
-                <div class="d-flex justify-content-center gap-2 mt-3">
+
+                </div>
+
+
+                <div class="d-flex bttns justify-content-center gap-2 mt-3">
                     <form action="{{ route('admin.acceptJob', $job->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-success accept-btn">Accept</button>
+                        <button type="submit" class="acceptbtn accept-btn">Accept</button>
                     </form>
 
                     <form action="{{ route('admin.rejectJob', $job->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger reject-btn">Reject</button>
+                        <button type="submit" class="btndanger reject-btn">Reject</button>
                     </form>
 
-                    <a href="{{ route('admin.viewJob', $job->id) }}" class="btn btn-secondary view-btn">View</a>
+                    <a class="viewbtn" href="{{ route('admin.viewJob', $job->id) }}" ><i class="fas fa-arrow-right"></i></a>
                 </div>
             </div>
         @endforeach
@@ -45,19 +55,40 @@
         gap: 15px;
         flex-wrap: wrap;
     }
+    .bttns{
+        align-self: center;
+
+    }
 
     .job-card {
         background-color: #D9D9D9;
-        border: 15px solid #B05476;
+        border: 18px solid #B05476;
         padding: 20px;
-        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        border-radius: 25px;
         text-align: center;
-        width: 350px;
+        width: 450px;
         box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     }
+.maincont{
+    display: flex;
+}
+.compimg{
+    align-self: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
 
+}
+    .jopdetals {
+        text-align: left;
+    }
     .job-card h3 {
-        color: #812222;
+        color: #8c7f7f;
     }
 
     .job-card p {
@@ -79,19 +110,35 @@
         font-weight: bold;
     }
 
-    .accept-btn {
+    .acceptbtn{
+        border: none;
         background-color: #366D56;
         color: white;
+        height: 40px;
+        width: 100px;
+        border-radius: 200px;
     }
 
     .reject-btn {
+        border: none;
         background-color: #6D364C;
         color: white;
+        height: 40px;
+        width: 100px;
+        border-radius: 200px;
     }
 
-    .view-btn {
-        background-color: #6c757d;
+    .viewbtn {
+        text-decoration: none;
+        background-color: #5684ac;
         color: white;
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
     }
 
     .btn:hover {

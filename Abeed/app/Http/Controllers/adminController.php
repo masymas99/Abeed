@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\JobListing;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
+use Illuminate\Http\Request;// /
+use Carbon\Carbon;//
 
-class AdminController extends Controller //gg
+class AdminController extends Controller 
 {
-    // عرض الصفحة الرئيسية
+    
     public function home()
     {
         $jobs = JobListing::where('status', 'pending')->with('user')->get();

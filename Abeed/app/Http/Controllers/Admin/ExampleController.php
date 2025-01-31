@@ -1,9 +1,9 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Example;
+use App\Models\JobListing;
 use Illuminate\Http\Request;
 
 class ExampleController extends Controller
@@ -13,9 +13,12 @@ class ExampleController extends Controller
      */
     public function index()
     {
-        // return view('admin.index');
-        return view('admin.index');
+        $admindata = JobListing::with('user')->where('status', 'pending')->get();
+
+
+        return view('admin.index', compact('admindata'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -36,15 +39,27 @@ class ExampleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Example $example)
-    {
-        //
-    }
+    public function show($id)
+{
+    $job = JobListing::with('user')->findOrFail($id);
+
+    return view('admin.show', compact('job'));
+}
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Example $example)
+    public function accept($id)
+    {
+        $job = JobListing::findOrFail($id);
+        $job->status = 'approved';
+        $job->save();
+
+        return redirect()->route('admin.index');
+    }
+
+
+     public function edit(Example $example)
     {
         //
     }
@@ -65,3 +80,4 @@ class ExampleController extends Controller
         //
     }
 }
+

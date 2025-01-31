@@ -11,9 +11,13 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
-//  route for admin WITH resource
 
-Route::get('admin', [AuthenticatedSessionController::class, 'index'])->name('admin.index');
+
+Route::get('admin', [ExampleController::class, 'index'])->name('admin.index');
+Route::get('admin/{id}', [ExampleController::class, 'show'])->name('admin.show');
+
+Route::patch('admin/{id}/accept', [ExampleController::class, 'accept'])->name('admin.accept');
+
 Route::get('employer', [AuthenticatedSessionController::class, 'index'])->name('employer.index');
 Route::get('candidate', [AuthenticatedSessionController::class, 'index'])->name('candidate.index');
 

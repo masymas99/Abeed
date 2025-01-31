@@ -22,6 +22,10 @@ class JobListing extends Model
         'salary_min',
         'salary_max',
         'user_id',
+        'application_deadline',
+        'skills_required',
+        'benefits',
+
     ];
 
     /**

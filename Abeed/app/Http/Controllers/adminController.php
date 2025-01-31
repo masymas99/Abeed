@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class AdminController extends Controller
+class AdminController extends Controller //gg
 {
     // عرض الصفحة الرئيسية
     public function home()

@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
 
      public function create()
      {
-         return view('auth.login');  
+         return view('auth.login');
      }
     public function index(): View
     {
@@ -46,7 +46,7 @@ class AuthenticatedSessionController extends Controller
         $user = Auth::user();
 
         if ($user->role == 'Admin') {
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.home');
         } elseif ($user->role == 'Employer') {
             return redirect()->route('employer.index');
         } elseif ($user->role == 'Candidate') {

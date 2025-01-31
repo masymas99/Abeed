@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ExampleController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobListingController;
@@ -13,10 +14,40 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin', [ExampleController::class, 'index'])->name('admin.index');
-Route::get('admin/{id}', [ExampleController::class, 'show'])->name('admin.show');
+//  rawda routes
 
-Route::patch('admin/{id}/accept', [ExampleController::class, 'accept'])->name('admin.accept');
+
+Route::get('admin', [AdminController::class, 'home'])->name('admin.home');
+
+// قبول الوظيفة (POST)
+Route::post('/admin/job/accept/{id}', [AdminController::class, 'acceptJob'])->name('admin.acceptJob');
+
+// رفض الوظيفة (POST)
+Route::post('/admin/job/reject/{id}', [AdminController::class, 'rejectJob'])->name('admin.rejectJob');
+
+// عرض تفاصيل الوظيفة
+Route::get('/admin/job/view/{id}', [AdminController::class, 'viewJob'])->name('admin.viewJob');
+
+// عرض جميع الوظائف المقبولة
+Route::get('/admin/all-jobs', [AdminController::class, 'allJobs'])->name('admin.allJobs');
+
+// حذف الوظيفة
+Route::delete('/admin/job/delete/{id}', [AdminController::class, 'deleteJob'])->name('admin.deleteJob');
+
+// عرض قائمة المستخدمين
+Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.users');
+
+
+
+
+
+
+
+
+// Route::get('admin', [ExampleController::class, 'index'])->name('admin.index');
+// Route::get('admin/{id}', [ExampleController::class, 'show'])->name('admin.show');
+
+// Route::patch('admin/{id}/accept', [ExampleController::class, 'accept'])->name('admin.accept');
 
 Route::get('employer', [AuthenticatedSessionController::class, 'index'])->name('employer.index');
 Route::get('candidate', [AuthenticatedSessionController::class, 'index'])->name('candidate.index');
@@ -30,7 +61,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         $user = Auth::user();
         if ($user->role == 'Admin') {
-            return view('admin.index');
+            return view('admin.home');
         } elseif ($user->role == 'Employer') {
             return view('employer.index');
         } elseif ($user->role == 'Candidate') {

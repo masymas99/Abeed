@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../../css/adminhome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+hi admin index
+
+@foreach ($admindata as $a )
+<div class="big-container d-flex flex-column align-items-center bg-secondary w-25 rounded p-3 m-3">
+    <div class="small-container w-75">
+        <div class="top">
+            <div class="details">
+                {{-- show job details --}}
+                <h1>{{$a->title}}</h1>
+                <h3>{{$a->user->company_name}}</h3>
+                <p>{{$a->email}}</p>
+                <p>{{$a->salary_min}}</p>
+                <p>{{$a->salary_max}}</p>
+                <p>{{$a->location}}</p>
+                <p>{{$a->application_deadline}}</p>
+
+
+            </div>
+
+            <div class="logo">
+
+            </div>
+        </div>
+        <div class="bottoms d-flex justify-content-between align-items-center">
+<form action="{{Route('admin.accept',[$a->id])}}" method="post">
+    @csrf
+    @method('PATCH')
+          <button type="submit" class="btn btn-success w-50 m-3">Accept</button>
+</form>
+          <button class="btn btn-danger w-50 m-3">reject</button>
+          <a href="{{Route('admin.show',[$a->id])}}" class="showIcon bg-info  p-2 rounded-circle">
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+
+    </div>
+
+    </div>
+@endforeach
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+</body>
+</body>
+</html>

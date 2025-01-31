@@ -17,7 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/resources/views/admin
 /resources/views/candidate
 /resources/views/employer
 .TODO

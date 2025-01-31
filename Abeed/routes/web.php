@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ExampleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobCategoryController;
 use App\Http\Controllers\JobListingController;
 use App\Http\Controllers\ProfileController;
@@ -49,9 +50,10 @@ Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.u
 
 // Route::patch('admin/{id}/accept', [ExampleController::class, 'accept'])->name('admin.accept');
 
-Route::get('employer', [AuthenticatedSessionController::class, 'index'])->name('employer.index');
+// Route::get('employer', [AuthenticatedSessionController::class, 'index'])->name('employer.index');
 Route::get('candidate', [AuthenticatedSessionController::class, 'index'])->name('candidate.index');
 
+Route::get('/company/home', [CompanyController::class, 'index'])->name('company.home');
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -63,7 +65,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         if ($user->role == 'Admin') {
             return view('admin.home');
         } elseif ($user->role == 'Employer') {
-            return view('employer.index');
+            return view('company.home');
         } elseif ($user->role == 'Candidate') {
             return view('candidate.index');
         }
@@ -83,6 +85,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+
+    Route::get('/company/home', [CompanyController::class, 'index'])->name('company.home');
+    Route::get('/company/create-job', [CompanyController::class, 'create'])->name('company.create-job');
+    Route::post('/company/store-job', [CompanyController::class, 'store'])->name('company.store-job');
+    Route::get('/company/job/{id}/edit', [CompanyController::class, 'edit'])->name('company.edit-job');
+    Route::put('/company/job/{id}', [CompanyController::class, 'update'])->name('company.update-job');
+    Route::delete('/company/jobs/{id}', [CompanyController::class, 'destroy'])->name('company.delete-job');
+    Route::get('/company/applications', [CompanyController::class, 'showApplications'])->name('company.applications');
+    Route::get('/company/accepted', [CompanyController::class, 'showAcceptedApplications'])->name('company.accepted');
+    Route::post('/company/approve-application/{id}', [CompanyController::class, 'approveApplication'])->name('company.approve-application');
+    Route::post('company/reject-application/{application}', [CompanyController::class, 'rejectApplication'])->name('company.reject-application');
+    Route::post('company/reject-application2/{application}', [CompanyController::class, 'rejectApplication2'])->name('company.reject-application2');
+
 });
 
 require __DIR__.'/auth.php';

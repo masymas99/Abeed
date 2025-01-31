@@ -48,7 +48,7 @@ class AuthenticatedSessionController extends Controller
         if ($user->role == 'Admin') {
             return redirect()->route('admin.home');
         } elseif ($user->role == 'Employer') {
-            return redirect()->route('employer.index');
+            return redirect()->route('company.home');
         } elseif ($user->role == 'Candidate') {
             return redirect()->route('candidate.index');
         }

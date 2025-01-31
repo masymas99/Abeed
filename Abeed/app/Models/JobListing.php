@@ -15,7 +15,7 @@ class JobListing extends Model
      * @var array
      */
     protected $fillable = [
-        'job_title',
+        'title',
         'description',
         'location',
         'work_type',

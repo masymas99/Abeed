@@ -41,7 +41,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label class="form-label fw-bold mb-2">Resume (Leave empty to keep current resume)</label>
-                            <input type="file" class="form-control form-control-lg @error('resume') is-invalid @enderror"
+                            <input type="text" class="form-control form-control-lg @error('resume') is-invalid @enderror"
                                 name="resume"
                                 style="border-radius: 10px; border: 1px solid #B05476;">
                             @error('resume')

@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Log;
 
 class JobListingController extends Controller
 {
-    public function index(Request $request)
+    public function search(Request $request)
     {
-        $jobs = JobListing::query()
+        $searchjobs = JobListing::query()
             ->select('id', 'job_title', 'description', 'location', 'work_type', 'salary_min', 'salary_max')
             ->when($request->search, function ($query, $search) {
                 $query->where('job_title', 'like', "%{$search}%")
@@ -21,7 +21,7 @@ class JobListingController extends Controller
             ->get();
 
         // Debug output
-        Log::info('Found jobs: ' . $jobs->count());
+        Log::info('Found jobs: ' . $searchjobs ->count());
 
         return view('jobs.index', compact('jobs'));
     }
@@ -40,4 +40,10 @@ class JobListingController extends Controller
 
         return view('jobs.show', compact('jobListing'));
     }
+    public function index(){
+        $jobs = JobListing::with('user')->where('status', 'approved')->get();
+        return view('jobs.index', compact('jobs'));
+    }
 }
+
+

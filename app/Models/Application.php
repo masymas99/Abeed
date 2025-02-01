@@ -9,20 +9,33 @@ class Application extends Model
 {
     use HasFactory;
 
-    protected $table = 'empapplications';
+    protected $table = 'applications';
 
     protected $fillable = [
         'job_id',
         'user_id',
         'full_name',
-        'email',
-        'resume_path',
-        'cover_letter',
+        'contact_email',
+        'resume',
+        'job_listing_id',
         'status'
     ];
 
-    public function jobListing()
+   /*  public function jobListing()
     {
         return $this->belongsTo(JobListing::class, 'job_id', 'id');
+    } */
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
+
+    /**
+     * Relationship with JobListing.
+     * An application belongs to a job listing.
+     */
+    public function jobListing()
+    {
+        return $this->belongsTo(JobListing::class);    }
 }

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container my-5">
-    <div class="card shadow" style="width: 800px; margin: 0 auto; min-height: 700px;">
+    <div class="card shadow" style="width: 800px; margin: 0 auto; min-height: 90vh">
         <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-start mb-4">
                 <h3 class="card-title text-primary">
@@ -50,7 +50,7 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label class="form-label fw-bold mb-2">Resume</label>
-                            <input type="file" class="form-control form-control-lg @error('resume') is-invalid @enderror"
+                            <input type="text" class="form-control form-control-lg @error('resume') is-invalid @enderror"
                                 name="resume" required
                                 style="border-radius: 10px; border: 1px solid #B05476;">
                             @error('resume')

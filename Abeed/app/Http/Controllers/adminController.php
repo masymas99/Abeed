@@ -17,7 +17,7 @@ class AdminController extends Controller
     }
 
     // قبول الوظيفة
-    public function acceptJob($id)//
+    public function acceptJob($id)
     {
         $job = JobListing::find($id);
 
@@ -25,7 +25,7 @@ class AdminController extends Controller
             $job->status = 'approved';
             $job->updated_at = Carbon::now();
             $job->save();
-        }//
+        }
 
         return redirect()->route('admin.home')->with('success', 'Job accepted successfully!');
     }

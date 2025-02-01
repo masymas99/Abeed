@@ -17,7 +17,7 @@ class AdminController extends Controller
     }
 
     // قبول الوظيفة
-    public function acceptJob($id)
+    public function acceptJob($id)//
     {
         $job = JobListing::find($id);
 

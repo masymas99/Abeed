@@ -6,11 +6,11 @@
             @foreach($applications as $application)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-6">
-                    <h2 class="text-xl font-semibold mb-2">{{ $application->job->title }}</h2>
-                    <p class="text-gray-600 mb-4">{{ $application->job->company }}</p>
+                    <h2 class="text-xl font-semibold mb-2">{{ $application->job?->title ?? 'No Title' }}</h2>
+                    <p class="text-gray-600 mb-4">{{ $application->job?->company ?? 'No Company' }}</p>
                     <div class="flex items-center justify-between">
                         <span class="text-green-600 font-semibold">Accepted</span>
-                        <span class="text-blue-600 font-semibold">${{ $application->job->salary }}</span>
+                        <span class="text-blue-600 font-semibold">${{ $application->job?->salary ?? 'N/A' }}</span>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,8 @@ class Application extends Model
     protected $table = 'empapplications';
 
     protected $fillable = [
-        'job_listing_id',
+        'job_id',
+        'user_id',
         'full_name',
         'email',
         'resume_path',
@@ -22,6 +23,6 @@ class Application extends Model
 
     public function jobListing()
     {
-        return $this->belongsTo(JobListing::class);
+        return $this->belongsTo(JobListing::class, 'job_id', 'id');
     }
 }

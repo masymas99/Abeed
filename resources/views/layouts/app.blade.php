@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,56 +11,69 @@
         body {
             background-color: #1a1a1a;
         }
+
         .navbar {
             background-color: #ffffff !important;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .navbar-nav {
             margin: 0 auto;
         }
+
         .nav-link {
             color: #333 !important;
             font-weight: 500;
         }
+
         .nav-link:hover {
             color: #800080 !important;
         }
+
         .navbar-brand {
             color: #800080 !important;
             font-weight: bold;
         }
+
         .card {
             background-color: #ffffff;
-            border: 10px solid  #B05476;
+            border: 10px solid #B05476;
             border-radius: 35px;
             width: 300px;
             height: 300px;
         }
+
         .card i {
             color: #800080;
         }
+
         .btn-primary {
             background-color: #40366D;
-            border-color:#40366D;
+            border-color: #40366D;
         }
+
         .btn-primary:hover {
             background-color: #660066;
             border-color: #660066;
         }
+
         .text-primary {
             color: #800080 !important;
         }
+
         .user-profile {
             display: flex;
             align-items: center;
             gap: 0.5rem;
             color: #333;
         }
+
         .user-profile i {
             color: #800080;
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -78,6 +92,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('applications.accepted') }}">Accepted</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('applications.my') }}">
+                            <i class="fas fa-edit"></i> Edit Applications
+                        </a>
+                    </li>
                 </ul>
                 <div class="user-profile">
                     <i class="fas fa-user-circle fa-lg"></i>
@@ -91,4 +110,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -4,26 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\JobListing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class JobListingController extends Controller
 {
     public function index(Request $request)
     {
-        $query = JobListing::latest();
+        $jobs = JobListing::query()
+            ->select('id', 'job_title', 'description', 'location', 'work_type', 'salary_min', 'salary_max')
+            ->when($request->search, function ($query, $search) {
+                $query->where('job_title', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('location', 'like', "%{$search}%");
+            })
+            ->latest()
+            ->get();
 
-        if ($request->has('search')) {
-            $search = $request->get('search');
-            $query->where('job_title', 'like', "%{$search}%")
-                  ->orWhere('description', 'like', "%{$search}%")
-                  ->orWhere('location', 'like', "%{$search}%");
-        }
+        // Debug output
+        Log::info('Found jobs: ' . $jobs->count());
 
-        $jobs = $query->get();
         return view('jobs.index', compact('jobs'));
     }
 
     public function show(JobListing $jobListing)
     {
+        if (!$jobListing->exists) {
+            Log::error('Job not found');
+            return redirect()->route('jobs.index')
+                ->with('error', 'Job not found');
+        }
+
+        // Add debugging
+        Log::info('JobListing ID: ' . $jobListing->id);
+        Log::info('JobListing data:', $jobListing->toArray());
+
         return view('jobs.show', compact('jobListing'));
     }
 }

@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
-@section('title', $jobListing->job_title)
+@section('title', $jobListing->job_title ?? 'Job Details')
 
 @section('content')
 <div class="container my-5">
+    @if(!$jobListing)
+    <div class="alert alert-danger">
+        <i class="fas fa-exclamation-circle me-2"></i>Job not found
+    </div>
+    @else
     <div class="card shadow" style="width: 800px; margin: 0 auto; height: 650px;">
         <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-start mb-4">
@@ -46,15 +51,16 @@
 
             <div class="d-flex gap-3 mt-4">
                 <a href="{{ route('applications.create', $jobListing) }}"
-                   class="btn btn-primary btn-lg px-4 py-2">
+                    class="btn btn-primary btn-lg px-4 py-2">
                     <i class="fas fa-paper-plane me-2"></i>Apply Now
                 </a>
                 <a href="{{ route('jobs.index') }}"
-                   class="btn btn-outline-primary btn-lg px-4 py-2">
+                    class="btn btn-outline-primary btn-lg px-4 py-2">
                     <i class="fas fa-arrow-left me-2"></i>Back
                 </a>
             </div>
         </div>
     </div>
+    @endif
 </div>
 @endsection

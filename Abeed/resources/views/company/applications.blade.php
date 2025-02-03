@@ -9,19 +9,19 @@
     <style>
 
         .approve-btn i {
-            color:  #02542D; 
+            color:  #02542D;
         }
 
         .reject-btn i {
-            color: #900B09; 
+            color: #900B09;
         }
 
         .approve-btn:hover i {
-            color: #388E3C; 
+            color: #388E3C;
         }
 
         .reject-btn:hover i {
-            color: rgb(222, 87, 78); 
+            color: rgb(222, 87, 78);
         }
     </style>
 </head>
@@ -33,11 +33,11 @@
         <div>
             <a href="{{ route('company.home') }}">Home</a>
             <a href="{{ route('company.applications') }}" class="active">Applications</a>
-            <a href="{{ route('company.accepted') }}">Accepted</a>  
+            <a href="{{ route('company.accepted') }}">Accepted</a>
 
         </div>
         <a href="{{ route('profile.edit') }}" class="company-name">
-    <i class="bi bi-building"></i> 
+    <i class="bi bi-building"></i>
     {{ auth()->user()->company_name }}
 </a>
     </div>

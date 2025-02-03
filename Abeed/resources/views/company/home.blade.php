@@ -128,10 +128,25 @@
             <a href="{{ route('company.applications') }}">Applications</a>
             <a href="{{ route('company.accepted') }}">Accepted</a>
         </div>
-        <a href="{{ route('profile.edit')}}" class="company-name">
-    <i class="bi bi-building"></i>
-    {{ auth()->user()->company_name }}
-</a>
+
+        <div class="d-flex">
+            <a href="{{ route('profile.edit')}}" class="company-name">
+                <i class="bi bi-building"></i>
+                {{ auth()->user()->company_name }}
+                </a>
+            <div class="mt-3 ">
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-responsive-nav-link style="text-decoration: none; color: #5d3b45;" :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            </div>
+         </div>
 
     </div>
 

@@ -44,10 +44,25 @@
             </li>
             <!-- <li class="nav-item"><a class="nav-link" href="#">Users</a></li> -->
         </ul>
-        <a href="{{ route('profile.edit') }}" style="text-decoration: none;" class="admin-info">
-            <div class="admin-icon">👤</div>
-            <span class="admin-text">{{ Auth::user()->name }}</span>
-        </a>
+         <div class="d-flex">
+            <a href="{{ route('profile.edit' ) }}" style="text-decoration: none;" class="admin-info">
+                <div class="admin-icon">👤</div>
+                <span class="admin-text">{{ Auth::user()->name }}</span>
+            </a>
+            <div class="mt-3 ">
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-responsive-nav-link style="text-decoration: none; color: #5d3b45;" :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Log Out') }}
+                    </x-responsive-nav-link>
+                </form>
+            </div>
+         </div>
+
     </div>
 </nav>
 

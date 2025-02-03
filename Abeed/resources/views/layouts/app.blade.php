@@ -34,6 +34,12 @@
             color: #800080 !important;
             font-weight: bold;
         }
+        .card-title {
+            color: #800080;
+            font-weight: bold;
+            font-size: 25px;
+        }
+        
 
         .card {
             background-color: #ffffff;
@@ -94,10 +100,29 @@
                     </li>
 
                 </ul>
-                <a href="{{ route('profile.edit') }}" style="text-decoration: none;" class=" user-profile">
-                    <i class="fas fa-user-circle fa-lg"></i>
-                    <span>{{ Auth::user()->name }}</span>
-                </a>
+
+
+                <div class="d-flex align-items-center justify-content-center">
+                    <a href="{{ route('profile.edit') }}" style="text-decoration: none;" class=" user-profile">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                        <span>{{ Auth::user()->name }}</span>
+                    </a>
+                    <div class=" ">
+                        <!-- Authentication -->
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-responsive-nav-link class="user-profile d-flex " style="text-decoration: none; color: #5d3b45;" :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-responsive-nav-link>
+                        </form>
+                    </div>
+                 </div>
+
+
+
             </div>
         </div>
     </nav>

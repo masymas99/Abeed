@@ -10,7 +10,7 @@
 
 .job-actions button i {
     color: black;
-    
+
 }
 
 .job-actions button.delete-btn i {
@@ -118,18 +118,18 @@
     </style>
 </head>
 <body>
-    
+
 
     <!-- Navbar -->
     <div class="navbar">
-        <b>3BEED</b>
+        <b>3 B E E D</b>
         <div>
             <a href="{{ route('company.home') }}" class="active">Home</a>
             <a href="{{ route('company.applications') }}">Applications</a>
-            <a href="{{ route('company.accepted') }}">Accepted</a> 
+            <a href="{{ route('company.accepted') }}">Accepted</a>
         </div>
-        <a href="{{ route('profile.edit') }}" class="company-name">
-    <i class="bi bi-building"></i> 
+        <a href="{{ route('profile.edit')}}" class="company-name">
+    <i class="bi bi-building"></i>
     {{ auth()->user()->company_name }}
 </a>
 
@@ -156,11 +156,11 @@
 
 
                     <!-- View Button -->
-                    <button class="view-btn" data-id="{{ $job->id }}" data-title="{{ $job->title }}" 
-                     data-description="{{ $job->description }}" data-skills="{{ $job->skills_required }}" 
-                     data-benefits="{{ $job->benefits }}" data-salary-min="{{ $job->salary_min }}" 
-                     data-salary-max="{{ $job->salary_max }}" data-location="{{ $job->location }}" 
-                     data-deadline="{{ $job->application_deadline }}" data-work-type="{{ $job->work_type }}" 
+                    <button class="view-btn" data-id="{{ $job->id }}" data-title="{{ $job->title }}"
+                     data-description="{{ $job->description }}" data-skills="{{ $job->skills_required }}"
+                     data-benefits="{{ $job->benefits }}" data-salary-min="{{ $job->salary_min }}"
+                     data-salary-max="{{ $job->salary_max }}" data-location="{{ $job->location }}"
+                     data-deadline="{{ $job->application_deadline }}" data-work-type="{{ $job->work_type }}"
                      data-status="{{ $job->status }}">
                      <i class="bi bi-arrow-right"></i>
 </button>
@@ -195,10 +195,10 @@
             const modal = document.getElementById('jobModal');
             const closeBtn = document.querySelector('.close-btn');
 
-           
+
             modal.style.display = 'none';
 
-           
+
             viewButtons.forEach(function (button) {
                 button.addEventListener('click', function () {
                     const jobTitle = this.getAttribute('data-title');
@@ -212,7 +212,7 @@
                     const jobWorkType = this.getAttribute('data-work-type');
                     const jobStatus = this.getAttribute('data-status');
 
-                
+
                     document.getElementById('jobTitle').textContent = jobTitle;
                     document.getElementById('jobSalary').textContent = `${jobSalaryMin} - ${jobSalaryMax}`;
                     document.getElementById('jobLocation').textContent = jobLocation;
@@ -223,17 +223,17 @@
                     document.getElementById('jobWorkType').textContent = jobWorkType;
                     document.getElementById('jobStatus').textContent = jobStatus;
 
-                 
+
                     modal.style.display = 'flex';
                 });
             });
 
-          
+
             closeBtn.addEventListener('click', function () {
                 modal.style.display = 'none';
             });
 
-        
+
             window.addEventListener('click', function (event) {
                 if (event.target === modal) {
                     modal.style.display = 'none';

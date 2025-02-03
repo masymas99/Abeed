@@ -4,6 +4,7 @@
 
     <div class="jobs-container">
         @foreach ($jobs as $job)
+
             <div class="job-card">
                 <div class="maincont">
                     <div class="jopdetals">

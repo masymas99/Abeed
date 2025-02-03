@@ -9,14 +9,12 @@ use Carbon\Carbon;
 
 class AdminController extends Controller //gg
 {
-    // عرض الصفحة الرئيسية
     public function home()
     {
         $jobs = JobListing::where('status', 'pending')->with('user')->get();
         return view('admin.home', compact('jobs'));
     }
 
-    // قبول الوظيفة
     public function acceptJob($id)
     {
         $job = JobListing::find($id);
@@ -28,6 +26,7 @@ class AdminController extends Controller //gg
         }
 
         return redirect()->route('admin.home')->with('success', 'Job accepted successfully!');
+        
     }
 
     // رفض الوظيفة

@@ -44,10 +44,10 @@
             </li>
             <!-- <li class="nav-item"><a class="nav-link" href="#">Users</a></li> -->
         </ul>
-        <div class="admin-info">
+        <a href="{{ route('profile.edit') }}" style="text-decoration: none;" class="admin-info">
             <div class="admin-icon">👤</div>
-            <span class="admin-text">ADMIN</span>
-        </div>
+            <span class="admin-text">{{ Auth::user()->name }}</span>
+        </a>
     </div>
 </nav>
 

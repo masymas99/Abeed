@@ -14,8 +14,6 @@ class ExampleController extends Controller
     public function index()
     {
         $admindata = JobListing::with('user')->where('status', 'pending')->get();
-
-
         return view('admin.index', compact('admindata'));
     }
 

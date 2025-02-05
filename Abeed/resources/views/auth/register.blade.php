@@ -1,90 +1,105 @@
-<x-guest-layout>
-    <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
-        @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <x-guest-layout>
+        <h1 style="font-size: 30px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align: center; color: #ef158d">3 B E E D</h1>
+        <h2 style="font-size: 20px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; text-align: center; color: #ffffff">Register now</h2>
+        <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
+            @csrf
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+            <!-- Name -->
+            <div>
+                <x-input-label for="name" :value="__('Name')" />
+                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <!-- Email Address -->
+            <div class="mt-4">
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            </div>
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <!-- Password -->
+            <div class="mt-4">
+                <x-input-label for="password" :value="__('Password')" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+                <x-text-input id="password" class="block mt-1 w-full"
+                                type="password"
+                                name="password"
+                                required autocomplete="new-password" />
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+            <!-- Confirm Password -->
+            <div class="mt-4">
+                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+                <x-text-input id="password_confirmation" class="block mt-1 w-full"
+                                type="password"
+                                name="password_confirmation" required autocomplete="new-password" />
+
+                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            </div>
 
 
-        <div>
-            <label for="role" class="text-gray-400">Role</label>
-            <select class="form-select bg-gray-900 text-gray-400 w-full rounded" name="role" id="role" required>
-                <option value="candidate" selected>Candidate</option>
-                <option value="employer">Employer</option>
-            </select>
-        </div>
+            <div>
+                <label for="role" class="text-gray-400">Role</label>
+                <select class="form-select bg-gray-900 text-gray-400 w-full rounded" name="role" id="role" required>
+                    <option value="candidate" selected>Candidate</option>
+                    <option value="employer">Employer</option>
+                </select>
+            </div>
 
-        <div id="employer-fields" style="display: none;">
-            <label class="text-gray-400 mt-4" for="company_name">Company Name</label>
-            <input type="text" id="company_name"class="block mt-1 w-full  bg-gray-900 text-gray-400 w-full rounded" name="company_name">
+            <div id="employer-fields" style="display: none;">
+                <label class="text-gray-400 mt-4" for="company_name">Company Name</label>
+                <input type="text" id="company_name"class="block mt-1 w-full  bg-gray-900 text-gray-400 w-full rounded" name="company_name">
 
-            <label class="form-label text-gray-400 mt-4" for="company_logo">Company Logo</label>
-            <input class="form-control text-gray-400 mt-4" type="file" id="company_logo" name="company_logo">
-        </div>
+                <label class="form-label text-gray-400 mt-4" for="company_logo">Company Logo</label>
+                <input class="form-control text-gray-400 mt-4" type="file" id="company_logo" name="company_logo">
+            </div>
 
-        <div>
-            <label class="text-gray-400 mt-4 rounded" for="phone">Phone</label>
+            <div>
+                <label class="text-gray-400 mt-4 rounded" for="phone">Phone</label>
 
-            <x-text-input class="block mt-1 w-full" type="text" id="phone" name="phone"/>
-        </div>
+                <x-text-input class="block mt-1 w-full" type="text" id="phone" name="phone"/>
+            </div>
 
-        <div>
-            <label class="text-gray-400 mt-4 rounded" for="address">Address</label>
-            <textarea class="bg-gray-900 text-white w-full" id="address" name="address"></textarea>
-        </div>
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+            <div>
+                <label class="text-gray-400 mt-4 rounded" for="address">Address</label>
+                <textarea class="bg-gray-900 text-white w-full" id="address" name="address"></textarea>
+            </div>
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-        <script>
-            document.getElementById('role').addEventListener('change', function () {
-                const employerFields = document.getElementById('employer-fields');
-                if (this.value === 'employer') {
-                    employerFields.style.display = 'block';
-                } else {
-                    employerFields.style.display = 'none';
-                }
-            });
-        </script>
+                <x-primary-button class="ms-4">
+                    {{ __('Register') }}
+                </x-primary-button>
+            </div>
+            <script>
+                document.getElementById('role').addEventListener('change', function () {
+                    const employerFields = document.getElementById('employer-fields');
+                    if (this.value === 'employer') {
+                        employerFields.style.display = 'block';
+                    } else {
+                        employerFields.style.display = 'none';
+                    }
+                });
+            </script>
 
-    </form>
-</x-guest-layout>
+        </form>
+    </x-guest-layout>
+
+</body>
+</html>

@@ -27,7 +27,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $validated =$request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -60,15 +60,19 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($validated['password']),
             'phone' => $validated['phone'] ?? null,
             'address' => $validated['address'] ?? null,
-            'company_name' => $validated['company_name'] ,
-            'company_logo' => $validated['company_logo'] ,
+            'company_name' => $validated['company_name']?? null,
+            'company_logo' => $validated['company_logo']?? null,
             'role' => $validated['role'] ?? 'Candidate',
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // return welcome view
+        // return to logout
 
-        return redirect(route('dashboard', absolute: false));
+
+        return view('auth.login');
+
+        // return redirect(route('dashboard', absolute: false));
     }
 }

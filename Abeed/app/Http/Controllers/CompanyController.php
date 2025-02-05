@@ -92,12 +92,19 @@ public function update(Request $request, $id)
 
 public function showApplications()
 {
+    $user = Auth::user();
     $applications = Application::with(['user', 'jobListing'])
                     ->where('status', 'pending')
+                    ->whereHas('jobListing', function($query) use ($user) {
+                        $query->where('user_id', $user->id);
+                    })
                     ->get();
 
     $acceptedApplications = Application::with(['user', 'jobListing'])
                     ->where('status', 'approved')
+                    ->whereHas('jobListing', function($query) use ($user) {
+                        $query->where('user_id', $user->id);
+                    })
                     ->get();
 
     return view('company.applications', compact('applications', 'acceptedApplications'));
